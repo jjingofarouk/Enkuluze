@@ -1,0 +1,313 @@
+/* Modern CSS Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom Properties */
+:root {
+  /* Colors */
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --secondary: #0f172a;
+  --accent: #f472b6;
+  --background: #ffffff;
+  --text: #1e293b;
+  --text-light: #64748b;
+  
+  /* Typography */
+  --font-heading: 'Cabinet Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  
+  /* Spacing */
+  --space-xs: clamp(0.75rem, 0.69rem + 0.29vw, 0.9375rem);
+  --space-sm: clamp(1rem, 0.92rem + 0.39vw, 1.25rem);
+  --space-md: clamp(1.5rem, 1.38rem + 0.58vw, 1.875rem);
+  --space-lg: clamp(2rem, 1.84rem + 0.78vw, 2.5rem);
+  --space-xl: clamp(3rem, 2.77rem + 1.17vw, 3.75rem);
+  
+  /* Animations */
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 500ms ease;
+}
+
+/* Base Styles */
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background: var(--background);
+}
+
+/* Header and Navigation */
+.site-header {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 100%
+  );
+  position: relative;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239fa6b2' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.container {
+  max-width: min(90%, 1200px);
+  margin: 0 auto;
+  padding: var(--space-sm);
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) 0;
+  position: relative;
+  z-index: 10;
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: -0.05em;
+}
+
+.nav-list {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.nav-item {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.nav-item:hover {
+  color: var(--primary);
+}
+
+.nav-item:hover::after {
+  transform: scaleX(1);
+}
+
+/* Hero Section */
+.hero-section {
+  padding: var(--space-xl) 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  min-height: calc(100vh - 100px);
+}
+
+.hero-content {
+  max-width: 800px;
+  animation: fadeUp 1s var(--transition-normal);
+}
+
+.subtitle {
+  color: var(--primary);
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 2.5rem + 3vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: var(--space-sm);
+}
+
+.tagline {
+  font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  color: var(--text-light);
+  margin-bottom: var(--space-lg);
+}
+
+/* Search Form */
+.search-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-container {
+  display: flex;
+  gap: var(--space-xs);
+  background: var(--background);
+  padding: var(--space-xs);
+  border-radius: 50px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#dictionary-search {
+  flex: 1;
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1.125rem;
+  background: transparent;
+  color: var(--text);
+}
+
+#dictionary-search:focus {
+  outline: none;
+}
+
+.search-button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform var(--transition-fast),
+              background var(--transition-fast);
+}
+
+.search-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Mobile Menu */
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--background);
+    padding: var(--space-md);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav-list.active {
+    display: flex;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    padding: var(--space-xs);
+    cursor: pointer;
+  }
+
+  .menu-icon {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text);
+    position: relative;
+    transition: background var(--transition-fast);
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: var(--text);
+    transition: transform var(--transition-fast);
+  }
+
+  .menu-icon::before {
+    transform: translateY(-8px);
+  }
+
+  .menu-icon::after {
+    transform: translateY(8px);
+  }
+
+  .mobile-menu-toggle.active .menu-icon {
+    background: transparent;
+  }
+
+  .mobile-menu-toggle.active .menu-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-toggle.active .menu-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .search-container {
+    flex-direction: column;
+    border-radius: 25px;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .site-header::before {
+    display: none;
+  }
+  
+  .search-form {
+    display: none;
+  }
+}
